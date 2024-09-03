@@ -7,6 +7,8 @@ The individual microservices can be found at:
 - [Users](https://github.com/Irfan-Ahmad-byte/microservice_users.git)
 - [Notifications](https://github.com/Irfan-Ahmad-byte/microservice_notifications.git)
 
+These are also present in the children of the current repo, each of which holds individual instructions also.
+
 ## Stack Used
 
 - Python
