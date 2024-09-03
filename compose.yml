@@ -1,0 +1,65 @@
+
+services:
+  postgresql-notifications:
+    image: bitnami/postgresql:latest
+    volumes:
+      - postgres_notifications_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysupersecretpassword
+      POSTGRES_DB: notifications
+    networks:
+      - microservice-net
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 30s
+      retries: 5
+
+  notifications-app:
+    build:
+      context: ./notifications
+      dockerfile: Dockerfile
+    depends_on:
+      postgresql-notifications:
+        condition: service_healthy
+    networks:
+      - microservice-net
+    ports:
+      - 8001:8001
+
+  postgresql-authentication:
+    image: bitnami/postgresql:latest
+    volumes:
+      - postgres_authentication_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysupersecretpassword
+      POSTGRES_DB: authentication
+    networks:
+      - microservice-net
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 30s
+      retries: 5
+
+  authentication-app:
+    build:
+      context: ./users
+      dockerfile: Dockerfile
+    depends_on:
+      postgresql-authentication:
+        condition: service_healthy
+    networks:
+      - microservice-net
+    ports:
+      - 8080:8080
+
+volumes:
+  postgres_notifications_data:
+  postgres_authentication_data:
+
+networks:
+  microservice-net:
+    driver: bridge
