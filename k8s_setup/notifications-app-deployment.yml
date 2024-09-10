@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notifications-app
+  namespace: orchestrator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notifications-app
+  template:
+    metadata:
+      labels:
+        app: notifications-app
+    spec:
+      containers:
+      - name: notifications-app
+        image: <Image>
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DATABASE_URL
+          value: "postgresql://postgres:mysupersecretpassword@postgresql-notifications-service:5432/notifications"

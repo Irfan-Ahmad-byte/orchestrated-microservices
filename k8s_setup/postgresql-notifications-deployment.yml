@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgresql-notifications
+  namespace: orchestrator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgresql-notifications
+  template:
+    metadata:
+      labels:
+        app: postgresql-notifications
+    spec:
+      containers:
+      - name: postgresql-notifications
+        image: bitnami/postgresql:latest
+        env:
+        - name: POSTGRES_USER
+          value: "postgres"
+        - name: POSTGRES_PASSWORD
+          value: "mysupersecretpassword"
+        - name: POSTGRES_DB
+          value: "notifications"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: postgres-notifications-data
+      volumes:
+      - name: postgresql-notifications
+        persistentVolumeClaim:
+          claimName: postgresql-notifications-pvc
