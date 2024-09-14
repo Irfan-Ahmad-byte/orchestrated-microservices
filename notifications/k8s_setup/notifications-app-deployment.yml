@@ -22,6 +22,6 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 8080
-        env:
-        - name: DATABASE_URL
-          value: "postgresql://postgres:mysupersecretpassword@postgresql-notifications-service:5432/notifications"
+        envFrom:
+        - configMapRef:
+            name: notification-config

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker build -t notifications-app:latest ./notifications
+docker build -t notifications-app:latest .
 
 minikube image load notifications-app:latest
 

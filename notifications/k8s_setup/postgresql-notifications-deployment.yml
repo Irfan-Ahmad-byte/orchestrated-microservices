@@ -16,13 +16,9 @@ spec:
       containers:
       - name: postgresql-notifications
         image: bitnami/postgresql:latest
-        env:
-        - name: POSTGRES_USER
-          value: "postgres"
-        - name: POSTGRES_PASSWORD
-          value: "mysupersecretpassword"
-        - name: POSTGRES_DB
-          value: "notifications"
+        envFrom:
+        - configMapRef:
+            name: notification-config
         resources:
           limits:
             memory: "128Mi"
@@ -31,8 +27,8 @@ spec:
         - containerPort: 5432
         volumeMounts:
         - mountPath: /var/lib/postgresql/data
-          name: postgres-notifications-data
+          name: postgresql-notifications-pvc
       volumes:
-      - name: postgresql-notifications
+      - name: postgresql-notifications-pvc
         persistentVolumeClaim:
           claimName: postgresql-notifications-pvc
