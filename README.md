@@ -19,3 +19,13 @@ These are also present in the children of the current repo, each of which holds 
 ## How to run
 
 > `docker compose up` OR `docker compose up -d`
+
+OR
+
+To run the setup on kubernetes
+
+> `./setup_k8s.sh`
+
+And to remove the Kubernetes setup run
+
+> `./remove_k8s.sh`
