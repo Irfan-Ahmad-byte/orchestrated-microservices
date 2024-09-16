@@ -15,13 +15,13 @@ spec:
     spec:
       containers:
       - name: notifications-app
-        image: notifications-app:latest
+        image: notifications-app-api:new
         resources:
           limits:
             memory: "128Mi"
             cpu: "500m"
         ports:
-        - containerPort: 8080
+        - containerPort: 8001
         envFrom:
         - configMapRef:
             name: notification-config
