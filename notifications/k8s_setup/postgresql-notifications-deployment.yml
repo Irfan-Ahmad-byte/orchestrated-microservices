@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: postgresql-notifications
-  namespace: orchestrator
+  namespace: notifications-app
 spec:
   replicas: 1
   selector:

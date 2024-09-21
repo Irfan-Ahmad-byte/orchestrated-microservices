@@ -1,6 +1,9 @@
 #!/bin/bash
 
-# docker build -t notifications-app:latest .
+docker build -t personalirfan/notifications-app-api:latest .
+docker push personalirfan/notifications-app-api:latest
+
+sleep 1m
 
 # check if minikube is running or not, if not then start minikube
 minikube status | grep -q 'Running' || minikube start
@@ -23,4 +26,4 @@ kubectl apply -f k8s_setup/notifications-app-service.yml
 # sleep for 1 minute to let the pods start
 sleep 1m
 
-kubectl port-forward service/notifications-app-service 8001:8001 -n orchestrator &
+kubectl port-forward service/notifications-app-service 8001:8001 -n notifications-app &

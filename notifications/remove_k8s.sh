@@ -2,11 +2,11 @@
 
 killall kubectl
 
-kubectl delete deployments --all -n orchestrator
-kubectl delete services --all -n orchestrator
-kubectl delete pvc --all -n orchestrator
-kubectl delete pv --all -n orchestrator
-kubectl delete secrets --all -n orchestrator
-kubectl delete configmaps --all -n orchestrator
-kubectl delete pods --all -n orchestrator
-kubectl delete namespaces orchestrator
+kubectl delete deployments --all -n notifications-app
+kubectl delete services --all -n notifications-app
+kubectl delete pvc --all -n notifications-app
+kubectl delete pv --all -n notifications-app
+kubectl delete secrets --all -n notifications-app
+kubectl delete configmaps --all -n notifications-app
+kubectl delete pods --all -n notifications-app
+kubectl delete namespaces notifications-app
