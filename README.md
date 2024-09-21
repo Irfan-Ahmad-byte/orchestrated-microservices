@@ -29,3 +29,16 @@ To run the setup on kubernetes
 And to remove the Kubernetes setup run
 
 > `./remove_k8s.sh`
+
+
+## Github secrets
+
+Add following secrets to your github actions, or you can manage them as you wish:
+
+- DATABASE_URL
+- DOCKERHUB_REPO
+- DOCKERHUB_TOKEN
+- DOCKERHUB_USERNAME
+- POSTGRES_DB
+- POSTGRES_PASSWORD
+- POSTGRES_USER
