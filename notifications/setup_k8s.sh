@@ -23,7 +23,9 @@ kubectl apply -f k8s_setup/postgres-notifications-pvc.yml
 kubectl apply -f k8s_setup/notifications-app-deployment.yml
 kubectl apply -f k8s_setup/notifications-app-service.yml
 
+kobuectl apply -f k8s_setup/load_balancer.yml
+
 # sleep for 1 minute to let the pods start
 sleep 1m
 
-kubectl port-forward service/notifications-app-service 8001:8001 -n notifications-app &
+# kubectl port-forward service/notifications-app-service 8001:8001 -n notifications-app &
