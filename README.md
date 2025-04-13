@@ -1,73 +1,99 @@
-# Orchestrated Microservices
+# ⚙️ Orchestrated Microservices: Docker & Kubernetes
 
-This repository demonstrates the orchestration of two microservices using two approaches:
+This repository demonstrates the orchestration of two independent FastAPI-based microservices using two distinct approaches:
 
-1. **Docker Compose**: Running the microservices in separate containers via a single `docker-compose` file.
-2. **Kubernetes**: Running the services within a Kubernetes architecture.
+1. **Docker Compose** – Service orchestration via a single `docker-compose.yml` file.
+2. **Kubernetes** – Deployment and scaling via container orchestration on a Kubernetes cluster.
 
-## Microservices Overview
+---
 
-The individual microservices are hosted separately and can be accessed via the following links:
+## 🎯 Purpose
 
-- [Users Service](https://github.com/Irfan-Ahmad-byte/microservice_users.git)
-- [Notifications Service](https://github.com/Irfan-Ahmad-byte/microservice_notifications.git)
+This project is built to showcase my ability to:
 
-Each microservice repository contains specific instructions on setup and usage. Additionally, these services are included as subdirectories in this repository, with their respective instructions.
+- Design modular microservices
+- Orchestrate containers using both Docker Compose and Kubernetes
+- Automate deployments with GitHub Actions
+- Configure environment variables and secrets securely
 
-## Workflow and Secrets
+> Note: Although both microservices may offer similar features, they are intentionally separated to simulate independent, orchestrated services for this demonstration.
 
-Both services include workflow files that can be customized to fit more specific deployment needs. The workflows require GitHub secrets for Docker and Kubernetes setups. Ensure the following secrets are added to your GitHub repository:
+---
 
-- `DATABASE_URL`
-- `DOCKERHUB_REPO`
-- `DOCKERHUB_TOKEN`
-- `DOCKERHUB_USERNAME`
-- `POSTGRES_DB`
-- `POSTGRES_PASSWORD`
-- `POSTGRES_USER`
+## 🧩 Microservices Overview
 
-You can manage these secrets according to your infrastructure's requirements.
+Each microservice is located in a subdirectory of this repository, with its own:
 
-## Tech Stack
+- Dockerfile
+- Kubernetes deployment YAML
+- CI/CD workflow
+- README for usage and local testing
 
-The stack used in this project includes:
+---
 
-- **Python** (FastAPI for building the microservices)
-- **Docker** (including Docker Compose)
-- **Kubernetes**
-- **GitHub Actions** (for CI/CD automation)
-- **Bash Scripting**
+## 🔐 GitHub Secrets
 
-## How to Run
+To enable the CI/CD workflows, ensure the following GitHub secrets are configured in your repository:
 
-### 1. Run with Docker Compose
+| Secret Name         | Description                                 |
+|---------------------|---------------------------------------------|
+| `DATABASE_URL`      | PostgreSQL connection string                |
+| `DOCKERHUB_REPO`    | Your DockerHub repository name              |
+| `DOCKERHUB_USERNAME`| DockerHub username                          |
+| `DOCKERHUB_TOKEN`   | DockerHub access token                      |
+| `POSTGRES_DB`       | Name of the PostgreSQL database             |
+| `POSTGRES_USER`     | DB username                                 |
+| `POSTGRES_PASSWORD` | DB password                                 |
 
-To run both microservices with Docker Compose, use:
+> These secrets power both the Docker build & push process and Kubernetes deployment pipeline.
+
+---
+
+## 🧱 Tech Stack
+
+- **Language**: Python (FastAPI)
+- **Containerization**: Docker, Docker Compose
+- **Orchestration**: Kubernetes (with kubectl-compatible scripts)
+- **CI/CD**: GitHub Actions
+- **Scripting**: Bash
+
+---
+
+## 🚀 How to Run
+
+### 🐳 Run with Docker Compose
 
 ```bash
-docker-compose up
+docker compose up
 ```
 
-Or to run them in detached mode:
+or run in detached mode:
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
-### 2. Run with Kubernetes
+This spins up both services in isolated containers connected through a Docker network.
 
-To deploy the services using Kubernetes, execute the following script:
+### ☸️ Run with Kubernetes
+
+Use the provided shell scripts:
 
 ```bash
-./setup_k8s.sh
+./setup_k8s.sh     # Deploy services to Kubernetes
+./remove_k8s.sh    # Tear down the cluster setup
 ```
 
-To remove the Kubernetes setup, run:
+> Ensure kubectl and your local Kubernetes environment (like Minikube) are properly configured before running.
 
-```bash
-./remove_k8s.sh
-```
+## 📌 Notes
 
-### Additional Notes
+This project is designed for local development and demonstration purposes.
 
-The GitHub workflows are preconfigured for both Docker and Kubernetes environments. For Kubernetes deployment, ensure that the necessary secrets (mentioned above) are set up correctly in your GitHub repository.
+Can be extended for cloud-native deployment on AWS EKS, GCP GKE, or Azure AKS.
+
+Workflows are modular and can be reused for additional services.
+
+## 👨‍💻 Author
+
+Developed by [Irfan Ahmad](!https://github.com/irfan-ahmad-byte)
