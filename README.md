@@ -96,4 +96,4 @@ Workflows are modular and can be reused for additional services.
 
 ## 👨‍💻 Author
 
-Developed by [Irfan Ahmad](!https://github.com/irfan-ahmad-byte)
+Developed by [Irfan Ahmad](https://github.com/irfan-ahmad-byte)
